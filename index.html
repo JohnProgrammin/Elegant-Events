@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Eleglance · Events shaped with care</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            color: #000000;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Waldenburg simulation with Cormorant */
+        .waldenburg-light {
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        .waldenburg-fh {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        @media (max-width: 1023px) {
+            .container {
+                padding: 0 24px;
+            }
+        }
+
+        /* Buttons */
+        .btn-black-pill {
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 0 14px;
+            height: 44px;
+            border-radius: 9999px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            border: 0.5px solid rgba(0,0,0,0.08);
+            box-shadow: rgba(0,0,0,0.4) 0px 0px 1px, rgba(0,0,0,0.04) 0px 4px 4px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-black-pill:hover {
+            background: #1a1a1a;
+            box-shadow: rgba(0,0,0,0.4) 0px 0px 1px, rgba(0,0,0,0.08) 0px 6px 8px;
+        }
+
+        .btn-warm-stone {
+            background: rgba(245, 242, 239, 0.8);
+            backdrop-filter: blur(2px);
+            color: #000000;
+            padding: 12px 20px 12px 14px;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: rgba(78, 50, 23, 0.04) 0px 6px 16px, 
+                        rgba(0,0,0,0.06) 0px 0px 0px 1px, 
+                        rgba(0,0,0,0.04) 0px 1px 2px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-warm-stone:hover {
+            background: rgba(245, 242, 239, 0.95);
+            box-shadow: rgba(78, 50, 23, 0.08) 0px 8px 20px, rgba(0,0,0,0.08) 0px 0px 0px 1px;
+        }
+
+        .btn-white-pill {
+            background: #ffffff;
+            color: #000000;
+            border-radius: 9999px;
+            padding: 0 18px;
+            height: 44px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: rgba(0,0,0,0.4) 0px 0px 1px, rgba(0,0,0,0.04) 0px 4px 4px;
+            border: 0.5px solid rgba(0,0,0,0.05);
+        }
+
+        /* Cards */
+        .card-elevated {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: rgba(0,0,0,0.06) 0px 0px 0px 1px, 
+                        rgba(0,0,0,0.04) 0px 1px 2px, 
+                        rgba(0,0,0,0.04) 0px 2px 4px,
+                        rgba(0,0,0,0.075) 0px 0px 0px 0.5px inset;
+            padding: 32px;
+        }
+
+        .bg-warm-light {
+            background-color: #f5f5f5;
+        }
+
+        .bg-warm-stone-subtle {
+            background-color: #f5f2ef;
+        }
+
+        /* Typography */
+        .hero-display {
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1.08;
+            letter-spacing: -0.96px;
+        }
+
+        .section-heading {
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1.17;
+        }
+
+        .card-heading {
+            font-size: 2rem;
+            font-weight: 300;
+            line-height: 1.13;
+        }
+
+        .body-large {
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.35;
+            letter-spacing: 0.14px;
+        }
+
+        .body-standard {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            letter-spacing: 0.16px;
+            color: #4e4e4e;
+        }
+
+        .text-warm-gray {
+            color: #777169;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 0.5px solid rgba(0,0,0,0.05);
+            z-index: 40;
+            padding: 16px 0;
+        }
+
+        .nav-link {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 0.15px;
+            color: #000000;
+            text-decoration: none;
+            padding: 8px 4px;
+            transition: color 0.15s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #4e4e4e;
+        }
+
+        /* Custom Select */
+        .custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select select {
+            width: 100%;
+            padding: 14px 20px;
+            background: #ffffff;
+            border: 0.5px solid rgba(0,0,0,0.1);
+            box-shadow: rgba(0,0,0,0.02) 0px 1px 2px inset;
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            letter-spacing: 0.16px;
+            appearance: none;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .custom-select::after {
+            content: '⌄';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777169;
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        .input-soft {
+            background: #ffffff;
+            border: 0.5px solid rgba(0,0,0,0.1);
+            box-shadow: rgba(0,0,0,0.02) 0px 1px 2px inset;
+            border-radius: 20px;
+            padding: 14px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            letter-spacing: 0.16px;
+            width: 100%;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .input-soft:focus {
+            border-color: transparent;
+            box-shadow: rgba(0,0,0,0.06) 0px 0px 0px 1px, rgba(147,197,253,0.5) 0px 0px 0px 3px;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Image placeholders */
+        .image-placeholder {
+            background: linear-gradient(135deg, #e8e4df 0%, #d6d0c9 100%);
+            border-radius: 24px;
+            box-shadow: rgba(0,0,0,0.04) 0px 2px 6px, inset 0 0 0 0.5px rgba(0,0,0,0.05);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* FAQ Styles */
+        .faq-item {
+            border-bottom: 0.5px solid rgba(0,0,0,0.08);
+            padding: 24px 0;
+            cursor: pointer;
+        }
+
+        .faq-item:first-child {
+            border-top: 0.5px solid rgba(0,0,0,0.08);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 0.15px;
+        }
+
+        .faq-icon {
+            font-size: 24px;
+            font-weight: 300;
+            color: #777169;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            color: #4e4e4e;
+            line-height: 1.6;
+            letter-spacing: 0.16px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            margin-top: 16px;
+        }
+
+        /* Animated Banner */
+        .animated-banner {
+            background: linear-gradient(135deg, #f5f2ef 0%, #ede8e3 50%, #f5f2ef 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+            padding: 64px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .banner-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 3.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+            animation: fadeUpIn 1s ease forwards;
+        }
+
+        @keyframes fadeUpIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .banner-subtext {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: #4e4e4e;
+            letter-spacing: 0.16px;
+            margin-bottom: 32px;
+            animation: fadeUpIn 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .banner-button {
+            animation: fadeUpIn 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .floating-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(119, 113, 105, 0.15);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-40px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+        }
+
+        /* Mobile nav */
+        @media (max-width: 1023px) {
+            .hero-display {
+                font-size: 2.8rem;
+            }
+            .banner-text {
+                font-size: 2.5rem;
+            }
+            .desktop-nav {
+                display: none !important;
+            }
+            .mobile-menu-btn {
+                display: block !important;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu-btn {
+                display: none !important;
+            }
+            .mobile-nav-collapsed {
+                display: none !important;
+            }
+        }
+
+        .mobile-nav-collapsed {
+            background: #ffffff;
+            border-bottom: 0.5px solid rgba(0,0,0,0.05);
+            padding: 20px 24px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="navbar">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+        <a onclick="showPage('home'); return false;" style="text-decoration: none; color: #000; cursor: pointer;">
+            <span style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 26px;">Eleglance</span>
+            <span style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 15px; color: #777169; margin-left: 6px;">events</span>
+        </a>
+
+        <div class="desktop-nav" style="display: flex; align-items: center; gap: 36px;">
+            <a onclick="showPage('home'); return false;" class="nav-link">Home</a>
+            <a onclick="showPage('services'); return false;" class="nav-link">Services</a>
+            <a onclick="showPage('portfolio'); return false;" class="nav-link">Portfolio</a>
+            <div style="display: flex; gap: 12px;">
+                <a onclick="showPage('inquire'); return false;" class="btn-white-pill">Inquire</a>
+                <a onclick="showPage('plan'); return false;" class="btn-black-pill">Plan event</a>
+            </div>
+        </div>
+
+        <button class="mobile-menu-btn" id="menuToggle" style="background: none; border: none; padding: 10px; cursor: pointer; display: none;">
+            <svg width="24" height="18" viewBox="0 0 24 18" fill="none">
+                <line y1="1" x2="24" y2="1" stroke="#000" stroke-width="1.5"/>
+                <line y1="9" x2="24" y2="9" stroke="#000" stroke-width="1.5"/>
+                <line y1="17" x2="24" y2="17" stroke="#000" stroke-width="1.5"/>
+            </svg>
+        </button>
+    </div>
+    <div id="mobileNav" class="mobile-nav-collapsed" style="display: none;">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+            <a onclick="showPage('home'); closeMobileMenu(); return false;" class="nav-link" style="font-size: 18px;">Home</a>
+            <a onclick="showPage('services'); closeMobileMenu(); return false;" class="nav-link" style="font-size: 18px;">Services</a>
+            <a onclick="showPage('portfolio'); closeMobileMenu(); return false;" class="nav-link" style="font-size: 18px;">Portfolio</a>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <a onclick="showPage('inquire'); closeMobileMenu(); return false;" class="btn-white-pill" style="flex:1; justify-content:center;">Inquire</a>
+                <a onclick="showPage('plan'); closeMobileMenu(); return false;" class="btn-black-pill" style="flex:1; justify-content:center;">Plan event</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <!-- Hero -->
+        <section style="padding: 80px 0 100px; background: #ffffff;">
+            <div class="container" style="max-width: 960px;">
+                <div class="reveal">
+                    <h1 class="waldenburg-light hero-display" style="margin-bottom: 24px;">
+                        Events that feel like<br>a quiet exhale
+                    </h1>
+                    <p class="body-large text-dark-gray" style="max-width: 620px; margin-bottom: 32px;">
+                        We believe the best gatherings unfold effortlessly. No frantic WhatsApp chains, 
+                        no last minute chaos. Just thoughtful planning and genuine care.
+                    </p>
+                </div>
+                <div class="reveal reveal-delay-1" style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a onclick="showPage('plan'); return false;" class="btn-warm-stone">
+                        <span style="font-weight: 500;">Start planning together</span>
+                        <span style="margin-left: 8px; opacity: 0.7;">→</span>
+                    </a>
+                    <a onclick="showPage('portfolio'); return false;" class="btn-white-pill">See our work</a>
+                </div>
+                <div class="reveal reveal-delay-2" style="margin-top: 64px; display: flex; gap: 40px; border-top: 0.5px solid rgba(0,0,0,0.05); padding-top: 32px;">
+                    <div><span style="font-weight: 300; font-size: 28px;">200+</span> <span class="text-warm-gray" style="font-size: 15px;">celebrations</span></div>
+                    <div><span style="font-weight: 300; font-size: 28px;">100%</span> <span class="text-warm-gray" style="font-size: 15px;">peace of mind</span></div>
+                    <div><span style="font-weight: 300; font-size: 28px;">12</span> <span class="text-warm-gray" style="font-size: 15px;">years crafting</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Images -->
+        <section style="padding: 40px 0;">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+                    <div class="reveal image-placeholder" style="height: 400px;">
+                        <img src="https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Elegant table setting">
+                    </div>
+                    <div class="reveal reveal-delay-1 image-placeholder" style="height: 400px;">
+                        <img src="https://images.pexels.com/photos/265722/pexels-photo-265722.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Floral arrangement">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How we work - Now with 4 cards -->
+        <section class="bg-warm-light" style="padding: 80px 0;">
+            <div class="container">
+                <h2 class="reveal waldenburg-light section-heading" style="margin-bottom: 48px;">How we make it easy</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px;">
+                    <div class="reveal card-elevated">
+                        <div style="font-size: 32px; font-weight: 300; margin-bottom: 20px;">①</div>
+                        <h3 class="card-heading waldenburg-light" style="margin-bottom: 16px;">We listen first</h3>
+                        <p class="body-standard">Tell us what matters to you. No forms that feel like interrogations.</p>
+                    </div>
+                    <div class="reveal reveal-delay-1 card-elevated">
+                        <div style="font-size: 32px; font-weight: 300; margin-bottom: 20px;">②</div>
+                        <h3 class="card-heading waldenburg-light" style="margin-bottom: 16px;">We design together</h3>
+                        <p class="body-standard">Collaborative planning where your voice stays central.</p>
+                    </div>
+                    <div class="reveal reveal-delay-2 card-elevated">
+                        <div style="font-size: 32px; font-weight: 300; margin-bottom: 20px;">③</div>
+                        <h3 class="card-heading waldenburg-light" style="margin-bottom: 16px;">You enjoy every moment</h3>
+                        <p class="body-standard">We handle the orchestration. You're present with your guests.</p>
+                    </div>
+                    <div class="reveal reveal-delay-3 card-elevated">
+                        <div style="font-size: 32px; font-weight: 300; margin-bottom: 20px;">④</div>
+                        <h3 class="card-heading waldenburg-light" style="margin-bottom: 16px;">Memories that linger</h3>
+                        <p class="body-standard">Long after the last toast, the feeling stays with you.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="padding: 80px 0; background: #ffffff;">
+            <div class="container" style="max-width: 800px;">
+                <h2 class="reveal waldenburg-light section-heading" style="margin-bottom: 16px; text-align: center;">Questions you might have</h2>
+                <p class="reveal reveal-delay-1 body-standard" style="text-align: center; margin-bottom: 48px; color: #777169;">And answers we're happy to give</p>
+                
+                <div class="reveal reveal-delay-2">
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>How far in advance should we start planning?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            For weddings and larger celebrations, we recommend reaching out 9 to 12 months ahead. For intimate gatherings and dinners, 2 to 3 months is often plenty. That said, we've worked magic on shorter timelines too.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Do you work with venues outside your city?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Absolutely. We've planned events across the country and internationally. Travel is part of what we do, and we have a trusted network of vendors in many regions. Let us know where you're dreaming of.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>What does your planning fee include?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Every package includes design conception, vendor coordination, timeline management, and on the day orchestration. We customize based on what you need. No hidden fees, no surprises. Just clarity from the start.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>We're not sure what we want yet. Is that okay?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            That's more than okay. That's where we shine. Many of our clients come to us with a feeling rather than a fully formed vision. We'll explore together and uncover what feels right for you.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>How do you handle unexpected hiccups?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            With calm and quick thinking. We always have backup plans and a kit filled with everything from safety pins to stain remover. Your job is to be present. Ours is to handle whatever comes up.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div id="services" class="page">
+        <section style="padding: 80px 0;">
+            <div class="container">
+                <h1 class="reveal waldenburg-light hero-display" style="font-size: 3rem; margin-bottom: 24px;">What we offer</h1>
+                <p class="reveal reveal-delay-1 body-large text-dark-gray" style="max-width: 700px; margin-bottom: 48px;">
+                    Every event is a story waiting to unfold. We bring the chapters together with care.
+                </p>
+                
+                <div style="display: grid; gap: 32px;">
+                    <div class="reveal card-elevated" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 0; overflow: hidden;">
+                        <div class="image-placeholder" style="height: 300px; border-radius: 0;">
+                            <img src="https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Wedding planning" style="height: 100%;">
+                        </div>
+                        <div style="padding: 32px;">
+                            <h3 class="card-heading waldenburg-light">Weddings & celebrations</h3>
+                            <p class="body-standard" style="margin: 16px 0;">From intimate ceremonies to grand receptions. We honor your traditions while bringing fresh perspective.</p>
+                            <a onclick="showPage('inquire'); return false;" class="btn-warm-stone" style="margin-top: 16px;">Let's talk weddings</a>
+                        </div>
+                    </div>
+                    
+                    <div class="reveal reveal-delay-1 card-elevated" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 0; overflow: hidden;">
+                        <div style="padding: 32px;">
+                            <h3 class="card-heading waldenburg-light">Corporate & brand experiences</h3>
+                            <p class="body-standard" style="margin: 16px 0;">Product launches, retreats, and client events that feel genuine rather than transactional.</p>
+                            <a onclick="showPage('inquire'); return false;" class="btn-warm-stone" style="margin-top: 16px;">Discuss corporate</a>
+                        </div>
+                        <div class="image-placeholder" style="height: 300px; border-radius: 0;">
+                            <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Corporate event">
+                        </div>
+                    </div>
+                    
+                    <div class="reveal reveal-delay-2 card-elevated" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 0; overflow: hidden;">
+                        <div class="image-placeholder" style="height: 300px; border-radius: 0;">
+                            <img src="https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Private dinner">
+                        </div>
+                        <div style="padding: 32px;">
+                            <h3 class="card-heading waldenburg-light">Private dinners & gatherings</h3>
+                            <p class="body-standard" style="margin: 16px 0;">Curated menus, thoughtful tablescapes, and an atmosphere that makes everyone feel at home.</p>
+                            <a onclick="showPage('inquire'); return false;" class="btn-warm-stone" style="margin-top: 16px;">Plan a dinner</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PORTFOLIO PAGE -->
+    <div id="portfolio" class="page">
+        <section style="padding: 80px 0;">
+            <div class="container">
+                <h1 class="reveal waldenburg-light hero-display" style="font-size: 3rem; margin-bottom: 16px;">Recent gatherings</h1>
+                <p class="reveal reveal-delay-1 body-large text-dark-gray" style="margin-bottom: 48px;">Moments we've had the honor of shaping.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+                    <div class="reveal image-placeholder" style="height: 350px;">
+                        <img src="https://images.pexels.com/photos/1035665/pexels-photo-1035665.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Wedding reception">
+                    </div>
+                    <div class="reveal reveal-delay-1 image-placeholder" style="height: 350px;">
+                        <img src="https://images.pexels.com/photos/3321797/pexels-photo-3321797.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Gala dinner">
+                    </div>
+                    <div class="reveal reveal-delay-2 image-placeholder" style="height: 350px;">
+                        <img src="https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Outdoor celebration">
+                    </div>
+                    <div class="reveal reveal-delay-3 image-placeholder" style="height: 350px;">
+                        <img src="https://images.pexels.com/photos/3149374/pexels-photo-3149374.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Intimate setting">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- INQUIRE PAGE -->
+    <div id="inquire" class="page">
+        <section style="padding: 80px 0;">
+            <div class="container" style="max-width: 800px;">
+                <h1 class="reveal waldenburg-light hero-display" style="font-size: 3rem; margin-bottom: 16px;">Start the conversation</h1>
+                <p class="reveal reveal-delay-1 body-large text-dark-gray" style="margin-bottom: 48px;">
+                    Tell us about what you're dreaming up. We'll get back to you within a few hours.
+                </p>
+                
+                <div class="reveal reveal-delay-2 card-elevated" style="padding: 40px;">
+                    <form id="inquiryForm">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                            <div>
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500;">Your name</label>
+                                <input type="text" name="name" required class="input-soft" placeholder="What should we call you?">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email address</label>
+                                <input type="email" name="email" required class="input-soft" placeholder="hello@example.com">
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 24px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">What brings you here?</label>
+                            <div class="custom-select">
+                                <select name="eventType" required>
+                                    <option value="">Select what feels right</option>
+                                    <option>Wedding celebration</option>
+                                    <option>Corporate gathering</option>
+                                    <option>Private dinner or party</option>
+                                    <option>Brand experience</option>
+                                    <option>Not sure yet, let's explore</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 24px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Tell us a bit more</label>
+                            <textarea name="message" rows="5" class="input-soft" placeholder="Dates, guest count, vibe you're going for… whatever feels helpful to share."></textarea>
+                        </div>
+                        
+                        <div style="margin-bottom: 24px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">How did you find us?</label>
+                            <div class="custom-select">
+                                <select name="source">
+                                    <option>Instagram</option>
+                                    <option>Referral from a friend</option>
+                                    <option>Google search</option>
+                                    <option>At another event</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-black-pill" style="padding: 0 32px; height: 52px;">Send your inquiry</button>
+                        <p id="formFeedback" style="margin-top: 16px; font-size: 14px;"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PLAN EVENT PAGE -->
+    <div id="plan" class="page">
+        <section style="padding: 80px 0;">
+            <div class="container" style="max-width: 900px;">
+                <h1 class="reveal waldenburg-light hero-display" style="font-size: 3rem; margin-bottom: 16px;">Let's plan your event</h1>
+                <p class="reveal reveal-delay-1 body-large text-dark-gray" style="margin-bottom: 48px;">
+                    This is where the details start taking shape. Fill out what you know, and we'll handle the rest.
+                </p>
+                
+                <div class="reveal reveal-delay-2 card-elevated" style="padding: 40px;">
+                    <form id="planForm">
+                        <div style="margin-bottom: 32px;">
+                            <h3 class="waldenburg-light" style="font-size: 1.8rem; margin-bottom: 24px;">The basics</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Full name</label>
+                                    <input type="text" name="planName" required class="input-soft">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
+                                    <input type="email" name="planEmail" required class="input-soft">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Phone (optional)</label>
+                                    <input type="tel" name="planPhone" class="input-soft" placeholder="For any quick check-ins">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Preferred contact</label>
+                                    <div class="custom-select">
+                                        <select name="contactPreference">
+                                            <option>Email</option>
+                                            <option>Phone</option>
+                                            <option>Either works</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 32px;">
+                            <h3 class="waldenburg-light" style="font-size: 1.8rem; margin-bottom: 24px;">Event details</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Event type</label>
+                                    <div class="custom-select">
+                                        <select name="planEventType" required>
+                                            <option value="">Select type</option>
+                                            <option>Wedding</option>
+                                            <option>Corporate event</option>
+                                            <option>Private party</option>
+                                            <option>Gala or fundraiser</option>
+                                            <option>Other celebration</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Estimated guests</label>
+                                    <div class="custom-select">
+                                        <select name="guestCount">
+                                            <option>Under 50</option>
+                                            <option>50 to 100</option>
+                                            <option>100 to 200</option>
+                                            <option>200 to 500</option>
+                                            <option>500+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Preferred date range</label>
+                                    <input type="text" name="dateRange" class="input-soft" placeholder="e.g., Fall 2025, Spring 2026">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Location (if known)</label>
+                                    <input type="text" name="location" class="input-soft" placeholder="City or venue name">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 32px;">
+                            <h3 class="waldenburg-light" style="font-size: 1.8rem; margin-bottom: 24px;">Budget & vision</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Budget range</label>
+                                    <div class="custom-select">
+                                        <select name="budget">
+                                            <option>Discussing options</option>
+                                            <option>$15k to $30k</option>
+                                            <option>$30k to $60k</option>
+                                            <option>$60k to $100k</option>
+                                            <option>$100k+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Style or vibe</label>
+                                    <input type="text" name="style" class="input-soft" placeholder="e.g., garden elegant, modern minimal">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 32px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Anything else we should know?</label>
+                            <textarea name="planMessage" rows="4" class="input-soft" placeholder="Special requests, must-haves, things to avoid…"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-warm-stone" style="padding: 16px 32px; font-size: 16px;">Submit your plan & we'll be in touch</button>
+                        <p id="planFeedback" style="margin-top: 16px; font-size: 14px;"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Animated Banner - Before Footer -->
+    <section class="animated-banner">
+        <div class="floating-particle" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+        <div class="floating-particle" style="top: 70%; left: 15%; animation-delay: 2s;"></div>
+        <div class="floating-particle" style="top: 30%; left: 85%; animation-delay: 4s;"></div>
+        <div class="floating-particle" style="top: 80%; left: 75%; animation-delay: 1s;"></div>
+        <div class="floating-particle" style="top: 50%; left: 50%; animation-delay: 3s;"></div>
+        
+        <div class="container">
+            <h2 class="banner-text">
+                Your gathering deserves<br>more than a group chat
+            </h2>
+            <p class="banner-subtext">
+                Let's create something worth remembering. Together.
+            </p>
+            <div class="banner-button">
+                <a onclick="showPage('plan'); return false;" class="btn-black-pill" style="padding: 0 32px; height: 52px; font-size: 16px;">Begin the journey</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer style="padding: 48px 0; background: #ffffff; border-top: 0.5px solid rgba(0,0,0,0.05);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div>
+            <span style="font-weight: 300; font-size: 22px;">Eleglance</span>
+            <span class="text-warm-gray" style="margin-left: 8px; font-size: 14px;">© 2025</span>
+        </div>
+        <div style="display: flex; gap: 28px;">
+            <a href="#" class="nav-link">Instagram</a>
+            <a href="#" class="nav-link">Pinterest</a>
+            <a href="#" class="nav-link">hello@eleglance.com</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Custom reveal observer
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe all reveal elements
+    function observeRevealElements() {
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+    }
+
+    // FAQ Toggle
+    function toggleFAQ(element) {
+        element.classList.toggle('active');
+    }
+
+    // Page navigation with proper animation reset
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        
+        // Show selected page
+        const activePage = document.getElementById(pageId);
+        activePage.classList.add('active');
+        
+        // Reset reveal states for new page
+        activePage.querySelectorAll('.reveal').forEach(el => {
+            el.classList.remove('visible');
+            revealObserver.unobserve(el);
+        });
+        
+        // Small delay to allow DOM update then observe
+        setTimeout(() => {
+            activePage.querySelectorAll('.reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+            
+            // Trigger check for already visible elements
+            activePage.querySelectorAll('.reveal').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 50);
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeMobileMenu() {
+        document.getElementById('mobileNav').style.display = 'none';
+    }
+
+    // Initialize everything when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+        // Observe initial elements
+        observeRevealElements();
+        
+        // Check for already visible elements on home page
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 100);
+        
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.style.display = mobileNav.style.display === 'none' || mobileNav.style.display === '' ? 'block' : 'none';
+        });
+        
+        // Handle inquiry form
+        document.getElementById('inquiryForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = e.target.name.value.trim();
+            const email = e.target.email.value.trim();
+            const feedback = document.getElementById('formFeedback');
+            
+            if (!name || !email) {
+                feedback.textContent = 'We just need your name and email to get started.';
+                feedback.style.color = '#b34a3c';
+                return;
+            }
+            if (!email.includes('@') || !email.includes('.')) {
+                feedback.textContent = 'That email doesn\'t look quite right. Could you check it?';
+                feedback.style.color = '#b34a3c';
+                return;
+            }
+            
+            feedback.textContent = 'Thank you. We\'ll respond within a few hours. Looking forward to connecting.';
+            feedback.style.color = '#2b6b4a';
+            e.target.reset();
+        });
+        
+        // Handle plan form
+        document.getElementById('planForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = e.target.planName.value.trim();
+            const email = e.target.planEmail.value.trim();
+            const feedback = document.getElementById('planFeedback');
+            
+            if (!name || !email) {
+                feedback.textContent = 'Name and email help us get back to you properly.';
+                feedback.style.color = '#b34a3c';
+                return;
+            }
+            if (!email.includes('@')) {
+                feedback.textContent = 'Could you double check that email address?';
+                feedback.style.color = '#b34a3c';
+                return;
+            }
+            
+            feedback.textContent = 'Your plan is in our inbox. Expect a thoughtful response within hours.';
+            feedback.style.color = '#2b6b4a';
+            e.target.reset();
+        });
+        
+        // Add scroll listener for reveal elements
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+    });
+
+    // Expose functions globally
+    window.showPage = showPage;
+    window.closeMobileMenu = closeMobileMenu;
+    window.toggleFAQ = toggleFAQ;
+</script>
+</body>
+</html>
